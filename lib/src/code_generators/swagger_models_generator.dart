@@ -828,10 +828,6 @@ static $returnType $fromJsonFunction($valueType? value) => $enumNameCamelCase$fr
     required String className,
     required Map<String, SwaggerSchema> allClasses,
   }) {
-    if (className.endsWith('\$Item')) {
-      return kObject.pascalCase;
-    }
-
     final items = prop.items;
 
     var typeName = '';
