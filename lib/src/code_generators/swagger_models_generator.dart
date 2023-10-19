@@ -1115,6 +1115,9 @@ static $returnType $fromJsonFunction($valueType? value) => $enumNameCamelCase$fr
       var propertyName = propertiesMap.keys.elementAt(i);
 
       final prop = propertiesMap[propertyName]!;
+      if (!requiredProperties.contains(propertyName)) {
+        prop.isNullable = true;
+      }
 
       final propertyKey = propertyName;
 
@@ -1286,7 +1289,8 @@ static $returnType $fromJsonFunction($valueType? value) => $enumNameCamelCase$fr
 
       final isNullableProperty = options.nullableModels.contains(className) ||
           options.nullableFields ||
-          value.isNullable;
+          value.isNullable ||
+          (!requiredProperties.contains(key));
 
       if (isNullableProperty) {
         results += '\t\tthis.$fieldName,\n';
