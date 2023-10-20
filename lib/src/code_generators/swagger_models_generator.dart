@@ -378,7 +378,11 @@ abstract class SwaggerModelsGenerator extends SwaggerGeneratorBase {
       case 'Date':
         return 'DateTime';
       case 'number':
-        return 'num';
+        if (parameter.format == 'double') {
+          return 'double';
+        } else {
+          return 'num';
+        }
       case 'object':
         return 'Object';
       case 'array':
@@ -1252,7 +1256,11 @@ static $returnType $fromJsonFunction($valueType? value) => $enumNameCamelCase$fr
       case 'integer':
         return 'int';
       case 'number':
-        return 'num';
+        if (format == 'double') {
+          return 'double';
+        } else {
+          return 'num';
+        }
       case 'double':
       case 'float':
         return 'double';
